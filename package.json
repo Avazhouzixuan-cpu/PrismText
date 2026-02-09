@@ -1,0 +1,22 @@
+{
+  "name": "prismtext",
+  "version": "1.0.0",
+  "description": "Cross-cultural semantic calibration system with Gemini 3",
+  "main": "src/background/background.js",
+  "scripts": {
+    "dev": "echo 'Load in Chrome Extensions (chrome://extensions/)'",
+    "build": "echo 'Ready for production'"
+  },
+  "dependencies": {
+    "@google/genai": "^1.40.0",
+    "@google/generative-ai": "^0.3.0"
+  },
+  "keywords": [
+    "gemini",
+    "semantic",
+    "cultural",
+    "communication"
+  ],
+  "author": "PrismText Team",
+  "license": "MIT"
+}

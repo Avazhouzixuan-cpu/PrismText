@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PrismText - Identity Consistency</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: "Inter", "Segoe UI", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+            background: #ECECEC;
+            min-height: 100vh;
+            padding: 32px 20px;
+            color: #2E2E2E;
+        }
+        .container {
+            max-width: 760px;
+            margin: 0 auto;
+            background: #ECECEC;
+            border-radius: 16px;
+            border: 1px solid #ABABAB;
+            box-shadow: 0 10px 30px rgba(46, 46, 46, 0.08);
+            overflow: hidden;
+        }
+        .header {
+            color: #2E2E2E;
+            padding: 28px 24px;
+            text-align: center;
+            border-bottom: 1px solid #ABABAB;
+        }
+        .header h1 { font-size: 24px; margin-bottom: 6px; font-weight: 600; letter-spacing: 0.2px; }
+        .header p { font-size: 12px; color: #ABABAB; }
+        .content { padding: 24px; }
+        .section-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: #2E2E2E;
+            margin-bottom: 10px;
+            text-transform: none;
+            letter-spacing: 0.2px;
+        }
+        .info-box {
+            background: #ECECEC;
+            border: 1px solid #ABABAB;
+            padding: 14px;
+            border-radius: 12px;
+            margin-bottom: 16px;
+            font-size: 13px;
+            color: #2E2E2E;
+            line-height: 1.6;
+        }
+        .toggle-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 16px;
+        }
+        .toggle-row input { width: 18px; height: 18px; accent-color: #2E2E2E; }
+        .upload-row { display: flex; gap: 10px; align-items: center; margin-bottom: 16px; }
+        .btn {
+            padding: 10px 14px;
+            border-radius: 12px;
+            border: 1px solid #ABABAB;
+            cursor: pointer;
+            font-weight: 600;
+            background: transparent;
+            color: #2E2E2E;
+        }
+        .btn-primary {
+            background: #2E2E2E;
+            color: #ECECEC;
+            border-color: #2E2E2E;
+        }
+        .btn-tertiary {
+            background: #ECECEC;
+            border: 1px solid #2E2E2E;
+            color: #2E2E2E;
+        }
+        .status {
+            font-size: 12px;
+            color: #ABABAB;
+        }
+        .samples {
+            font-size: 12px;
+            color: #ABABAB;
+            margin-top: 10px;
+        }
+        .footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 16px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Identity Consistency</h1>
+            <p>Preserve your writing signature while improving clarity.</p>
+        </div>
+        <div class="content">
+            <div class="section-title">What this does</div>
+            <div class="info-box">
+                This feature helps Gemini 3 learn your personal writing style (logic flow, transitions, and word preferences).
+                It reduces “robotic” output by keeping your signature voice while fixing clarity issues.
+            </div>
+
+            <div class="section-title">Enable</div>
+            <div class="toggle-row">
+                <input type="checkbox" id="identityEnabled">
+                <label for="identityEnabled">Enable Identity Consistency for future generations</label>
+            </div>
+
+            <div class="section-title">Upload past writing</div>
+            <div class="upload-row">
+                <input type="file" id="identityFiles" multiple>
+                <button id="importSamples" class="btn btn-primary">Import Samples</button>
+            </div>
+            <div class="status" id="identityStatus">No samples imported yet.</div>
+
+            <div class="section-title">Auto-save from “Your Message”</div>
+            <div class="info-box">
+                When enabled, every message you type in PrismText will be saved locally for style analysis.
+                You can clear saved samples anytime.
+            </div>
+
+            <div class="section-title">Style Summary</div>
+            <div class="info-box" id="styleSummary">
+                No summary yet. Import samples or enable auto-save to build your profile.
+            </div>
+
+            <div class="footer">
+                <button id="analyzeStyle" class="btn btn-primary">Analyze My Style</button>
+                <div class="samples" id="sampleCount">Samples: 0</div>
+            </div>
+
+            <div class="footer">
+                <button id="clearSamples" class="btn btn-tertiary">Clear Saved Samples</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="identity.js"></script>
+</body>
+</html>

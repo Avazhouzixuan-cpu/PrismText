@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PrismText Settings</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Inter", "Segoe UI", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+            background: #ECECEC;
+            min-height: 100vh;
+            padding: 32px 20px;
+            color: #2E2E2E;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: #ECECEC;
+            border-radius: 16px;
+            border: 1px solid #ABABAB;
+            box-shadow: 0 10px 30px rgba(46, 46, 46, 0.08);
+            overflow: hidden;
+        }
+
+        .header {
+            color: #2E2E2E;
+            padding: 28px 24px;
+            text-align: center;
+            border-bottom: 1px solid #ABABAB;
+        }
+
+        .header h1 {
+            font-size: 24px;
+            margin-bottom: 6px;
+            font-weight: 600;
+            letter-spacing: 0.2px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            justify-content: center;
+        }
+
+        .header p {
+            font-size: 12px;
+            color: #ABABAB;
+        }
+
+        .content {
+            padding: 24px;
+        }
+
+        .form-group {
+            margin-bottom: 30px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #2E2E2E;
+            font-size: 13px;
+        }
+
+        .form-group input[type="password"],
+        .form-group input[type="text"],
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ABABAB;
+            border-radius: 10px;
+            font-family: inherit;
+            font-size: 14px;
+            transition: border-color 0.2s, box-shadow 0.2s;
+            background: #ECECEC;
+            color: #2E2E2E;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #A7CDB8;
+            box-shadow: 0 0 0 3px rgba(167, 205, 184, 0.3);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+            font-family: "Inter", "Segoe UI", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+            font-size: 12px;
+        }
+
+        .info-box {
+            background: #ECECEC;
+            border: 1px solid #ABABAB;
+            padding: 14px;
+            border-radius: 12px;
+            margin-bottom: 16px;
+            font-size: 13px;
+            color: #2E2E2E;
+            line-height: 1.6;
+        }
+
+        .info-box strong {
+            color: #2E2E2E;
+        }
+
+        .info-box a {
+            color: #2E2E2E;
+            text-decoration: none;
+            font-weight: 600;
+            border-bottom: 1px solid #ABABAB;
+        }
+
+        .info-box a:hover {
+            border-bottom-color: #2E2E2E;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 12px;
+            margin-top: 30px;
+        }
+
+        button {
+            flex: 1;
+            padding: 12px 20px;
+            border: 1px solid #ABABAB;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            text-transform: none;
+            letter-spacing: 0.2px;
+            transition: all 0.2s;
+            background: transparent;
+            color: #2E2E2E;
+        }
+
+        .btn-save {
+            background: #2E2E2E;
+            color: #ECECEC;
+            border-color: #2E2E2E;
+        }
+
+        .btn-save:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 8px 20px rgba(46, 46, 46, 0.2);
+        }
+
+        .btn-reset {
+            background: #ECECEC;
+            color: #2E2E2E;
+            border: 1px solid #2E2E2E;
+        }
+
+        .btn-reset:hover {
+            background: #E8DF98;
+        }
+
+        .status-message {
+            padding: 12px 16px;
+            border-radius: 10px;
+            margin-bottom: 16px;
+            display: none;
+            font-weight: 600;
+            font-size: 13px;
+            background: #ECECEC;
+            border: 1px solid #ABABAB;
+            color: #2E2E2E;
+        }
+
+        .status-message.success {
+            border-color: #A7CDB8;
+            display: block;
+        }
+
+        .status-message.error {
+            border-color: #E8DF98;
+            display: block;
+        }
+
+        .divider {
+            margin: 24px 0;
+            border: none;
+            border-top: 1px solid #ABABAB;
+        }
+
+        .section-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: #2E2E2E;
+            margin-bottom: 12px;
+            text-transform: none;
+            letter-spacing: 0.2px;
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 12px;
+        }
+
+        .checkbox-group input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+            accent-color: #2E2E2E;
+        }
+
+        .checkbox-group label {
+            margin: 0;
+            cursor: pointer;
+            flex: 1;
+            font-weight: 400;
+        }
+
+        .icon {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            background-color: currentColor;
+            vertical-align: -2px;
+            -webkit-mask-repeat: no-repeat;
+            -webkit-mask-position: center;
+            -webkit-mask-size: contain;
+            mask-repeat: no-repeat;
+            mask-position: center;
+            mask-size: contain;
+        }
+
+        .icon-lock {
+            -webkit-mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M7 10V7a5 5 0 0110 0v3h1a2 2 0 012 2v7a2 2 0 01-2 2H6a2 2 0 01-2-2v-7a2 2 0 012-2h1zm2 0h6V7a3 3 0 00-6 0v3z'/></svg>");
+            mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M7 10V7a5 5 0 0110 0v3h1a2 2 0 012 2v7a2 2 0 01-2 2H6a2 2 0 01-2-2v-7a2 2 0 012-2h1zm2 0h6V7a3 3 0 00-6 0v3z'/></svg>");
+        }
+
+        .icon-info {
+            -webkit-mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M11 10h2v8h-2v-8zm0-4h2v2h-2V6zm1-4a10 10 0 100 20 10 10 0 000-20z'/></svg>");
+            mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M11 10h2v8h-2v-8zm0-4h2v2h-2V6zm1-4a10 10 0 100 20 10 10 0 000-20z'/></svg>");
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1><span class="icon icon-lock" aria-hidden="true"></span>API Settings</h1>
+            <p>Configure Gemini API access for PrismText</p>
+        </div>
+
+        <div class="content">
+            <div id="statusMessage" class="status-message"></div>
+
+            <div class="form-group">
+                <div class="section-title">API Configuration</div>
+                
+                <div class="info-box">
+                    <strong><span class="icon icon-info" aria-hidden="true"></span>Get Your API Key:</strong><br>
+                    1. Visit <a href="https://makersuite.google.com/app/apikey" target="_blank">Google AI Studio</a><br>
+                    2. Click "Create API Key"<br>
+                    3. Copy the generated key<br>
+                    4. Paste it below (kept locally, never shared)
+                </div>
+
+                <label for="apiKey">Gemini API Key *</label>
+                <input type="password" id="apiKey" placeholder="sk-..." required>
+                <small style="display: block; margin-top: 8px; color: #ABABAB;">Your API key is stored locally in browser storage and never sent to external servers.</small>
+            </div>
+
+            <div class="divider"></div>
+
+            <div class="form-group">
+                <div class="section-title">Privacy & Data</div>
+
+                <div class="checkbox-group">
+                    <input type="checkbox" id="enableAnalytics" checked>
+                    <label for="enableAnalytics">Enable usage analytics (helps improve PrismText)</label>
+                </div>
+
+                <div class="checkbox-group">
+                    <input type="checkbox" id="enableContextMenu" checked>
+                    <label for="enableContextMenu">Show "Analyze with PrismText" in right-click menu</label>
+                </div>
+
+                <div class="checkbox-group">
+                    <input type="checkbox" id="enableNotifications" checked>
+                    <label for="enableNotifications">Show analysis complete notifications</label>
+                </div>
+
+                <div class="info-box" style="margin-top: 16px;">
+                    <strong><span class="icon icon-lock" aria-hidden="true"></span>Your Privacy:</strong><br>
+                    • All text stays on your device unless sent to Gemini API<br>
+                    • API responses are not stored after use<br>
+                    • No data shared with third parties<br>
+                    • GDPR and privacy law compliant
+                </div>
+            </div>
+
+            <div class="divider"></div>
+
+            <div class="form-group">
+                <div class="section-title">Danger Zone</div>
+
+                <button class="btn-reset" onclick="clearAllData()">Clear All Saved Data</button>
+                <small style="display: block; margin-top: 8px; color: #ABABAB;">Resets all settings and cache. Cannot be undone.</small>
+            </div>
+
+            <div class="button-group">
+                <button class="btn-save">Save Settings</button>
+                <button class="btn-reset">Reset Form</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="options.js"></script>
+</body>
+</html>

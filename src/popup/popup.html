@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PrismText - Semantic Calibration</title>
+    <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>PrismText</h1>
+            <p class="subtitle">A Gemini 3–Based Cross-Cultural Semantic Alignment and Risk Decision System</p>
+        </header>
+
+        <!-- API Key Alert & Quick Setup -->
+        <div id="apiKeyAlert" class="api-key-alert" style="display: none;">
+            <div class="alert-title">
+                <span class="icon icon-warning" aria-hidden="true"></span>
+                <span>Gemini API Key Required</span>
+            </div>
+            <p class="alert-subtitle">Quick setup - paste your API key below:</p>
+            <div class="alert-actions">
+                <input type="password" id="quickApiKey" placeholder="" class="alert-input">
+                <button id="quickSaveApiBtn" class="btn btn-secondary">Save Key</button>
+            </div>
+            <p class="alert-footnote">
+                Or go to Settings to save it permanently. Get your free key from <a href="https://ai.google.dev" target="_blank">ai.google.dev</a>
+            </p>
+        </div>
+
+        <div class="input-section">
+            <label for="textInput">Your Message <span id="clearMessage" class="clear-link">Clear</span></label>
+            <textarea id="textInput" placeholder="Paste your message here..." rows="12"></textarea>
+        </div>
+
+        <div class="context-section">
+            <label for="recipient">Recipient Profile</label>
+            <select id="recipient">
+                <option value="">Select recipient country...</option>
+            </select>
+        </div>
+
+        <div class="action-buttons primary-actions">
+            <button id="analyzeBtn" class="btn btn-primary">Analyze & Calibrate</button>
+        </div>
+
+        <div class="output-section">
+            <div class="output-header">
+                <h3>Calibrated Version</h3>
+                <span id="realtimeIndicator" class="realtime-indicator" style="display:none;">Calibrating...</span>
+                <span id="copyIcon" class="copy-icon icon icon-copy" title="Copy calibrated version" role="button" aria-label="Copy calibrated version"></span>
+            </div>
+            <textarea id="outputText" readonly rows="12" placeholder="Calibrated output will appear here..."></textarea>
+        </div>
+
+        <div class="controls-section controls-compact">
+                <h3>Dynamic Calibration Controls</h3>
+
+                <div class="dial-group">
+                    <label>Power Distance (Hierarchy)</label>
+                    <div class="slider-container">
+                        <span class="label-left">Informal</span>
+                        <input type="range" id="hierarchySlider" class="slider" min="0" max="100" value="50">
+                        <span class="label-right">Formal</span>
+                    </div>
+                    <p class="value-display">Level: <span id="hierarchyValue">50</span>%</p>
+                </div>
+
+                <div class="dial-group">
+                    <label>Emotional Saturation</label>
+                    <div class="slider-container">
+                        <span class="label-left">Cold</span>
+                        <input type="range" id="emotionalSlider" class="slider" min="0" max="100" value="50">
+                        <span class="label-right">Warm</span>
+                    </div>
+                    <p class="value-display">Level: <span id="emotionalValue">50</span>%</p>
+                </div>
+
+                <div class="dial-group">
+                    <label>Urgency Level</label>
+                    <div class="slider-container">
+                        <span class="label-left">Low Pressure</span>
+                        <input type="range" id="urgencySlider" class="slider" min="0" max="100" value="50">
+                        <span class="label-right">High Priority</span>
+                    </div>
+                    <p class="value-display">Level: <span id="urgencyValue">50</span>%</p>
+                </div>
+
+                <div class="dial-group">
+                    <label>Directness</label>
+                    <div class="slider-container">
+                        <span class="label-left">Implicit</span>
+                        <input type="range" id="directnessSlider" class="slider" min="0" max="100" value="50">
+                        <span class="label-right">Explicit</span>
+                    </div>
+                    <p class="value-display">Level: <span id="directnessValue">50</span>%</p>
+                </div>
+        </div>
+
+        <div class="radar-section radar-section-primary radar-compact">
+            <h3>Cultural Reception Radar</h3>
+            <canvas id="radarCanvas" width="320" height="220"></canvas>
+        </div>
+
+        <div class="action-buttons settings-actions">
+            <button id="advancedBtn" class="btn btn-tertiary">Advanced</button>
+            <button id="identityBtn" class="btn btn-tertiary">Identity Consistency</button>
+            <button id="settingsBtn" class="btn btn-tertiary">API Settings</button>
+        </div>
+
+        <div id="loadingSpinner" class="spinner hidden"></div>
+    </div>
+
+    <!-- Core Analysis Modules -->
+    <script src="../lib/intent-detector-v2.js"></script>
+    <script src="../lib/cultural-analyzer-v2.js"></script>
+    <script src="../lib/tone-calibrator-v2.js"></script>
+    <script src="../lib/contextual-intelligence.js"></script>
+    <script src="../lib/semantic-analyzer-v3.js"></script>
+    <script src="../lib/entity-recognizer-v3.js"></script>
+    <script src="../lib/language-detector-v3.js"></script>
+    <script src="../lib/sentiment-analyzer-v3.js"></script>
+
+    <!-- Gemini Client (fetch API, CSP compliant) -->
+    <script src="../lib/gemini-client.js"></script>
+
+    <!-- Main Popup Logic -->
+    <script src="popup.js"></script>
+</body>
+</html>
